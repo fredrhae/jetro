@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="LayoutPadrao">
+	  
+<head>
+	<title>Lista de Células</title>
+</head>
+<section layout:fragment="conteudo">
+	<button type="submit" class="btn btn-primary">Novo Relatório</button>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4 class="panel-title">Relatórios de Células</h4>
+		</div>
+		<div class="panel-body">
+			<table class="table table-bordered table-striped">
+				<thead>
+					<tr>
+						<th class="text-center col-md-1">#</th>
+						<th class="text-center col-md-1">Data</th>
+						<th class="text-center col-md-1">Preletor</th>
+						<th class="text-right col-md-1">Presentes</th>
+						<th class="text-center col-md-1">Visitantes</th>
+						<th class="text-center col-md-2">Oração</th>
+						<th class="text-center col-md-1">Dificuldades</th>
+						<th class="text-center col-md-1">Situação</th>					
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td colspan="8">Nenhum Relatório foi encontrado</td>
+				</tr>
+				</tbody>
+			</table> 
+		</div>
+	</div>
+</section>
+</html>
