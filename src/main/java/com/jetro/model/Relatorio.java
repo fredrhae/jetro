@@ -1,11 +1,9 @@
 package com.jetro.model;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,83 +11,101 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.format.annotation.NumberFormat;
 
-@Entity
+@Entity( name = "CelulaRel")
 public class Relatorio {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
-	private String descricao;
+	@Column(name = "IdCelulaRel")
+	private Long idRelatorio;
 	
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Temporal(TemporalType.DATE)
-	private Date dataVencimento;
+	@Column(name = "Data")
+	private Date data;
 	
-	@NumberFormat(pattern = "#,##0.00")
-	private BigDecimal valor;
+	@Column(name = "HrInicio")
+	private String horaInicio;
 	
-	@Enumerated(EnumType.STRING)
-	private StatusTitulo status;
+	@Column(name = "HrFim")
+	private String horaFim;
 	
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Relatorio other = (Relatorio) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
-	}
+	@Column(name = "IdPreletor")
+	private Integer idPreletor;
+	
+	@Column(name = "NumPresentes")
+	private Integer numeroPresentes;
+
+	@Column(name = "NumVisitantes")
+	private Integer numeroVisitantes;
+	
+	@Column(name = "IndLouvor")
+	private String louvor;
+	
+	@Column(name = "Observacao")
+	private String observacao;
 	
 	public Long getId() {
-		return id;
+		return idRelatorio;
 	}
 	public void setId(Long id) {
-		this.id = id;
-	}
-	
-	public String getDescricao() {
-		return descricao;
-	}
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+		this.idRelatorio = id;
 	}
 	
 	public Date getDataVencimento() {
-		return dataVencimento;
+		return data;
 	}
 	public void setDataVencimento(Date dataVencimento) {
-		this.dataVencimento = dataVencimento;
+		this.data = dataVencimento;
 	}
 	
-	public BigDecimal getValor() {
-		return valor;
+	public String getHoraInicio() {
+		return horaInicio;
 	}
-	public void setValor(BigDecimal valor) {
-		this.valor = valor;
+	public void setHoraInicio(String horaInicio) {
+		this.horaInicio = horaInicio;
 	}
 	
-	public StatusTitulo getStatus() {
-		return status;
+	public String getHoraFim() {
+		return horaFim;
 	}
-	public void setStatus(StatusTitulo status) {
-		this.status = status;
+	public void setHoraFim(String horaFim) {
+		this.horaFim = horaFim;
+	}
+	
+	public Integer getIdPreletor() {
+		return idPreletor;
+	}
+	public void setIdPreletor(Integer idPreletor) {
+		this.idPreletor = idPreletor;
+	}
+	
+	public Integer getNumeroPresentes() {
+		return numeroPresentes;
+	}
+	public void setNumeroPresentes(Integer numeroPresentes) {
+		this.numeroPresentes = numeroPresentes;
+	}
+	
+	public Integer getNumeroVisitantes() {
+		return numeroVisitantes;
+	}
+	public void setNumeroVisitantes(Integer numeroVisitantes) {
+		this.numeroVisitantes = numeroVisitantes;
+	}
+	
+	public String getLouvor() {
+		return louvor;
+	}
+	public void setLouvor(String louvor) {
+		this.louvor = louvor;
+	}
+	
+	public String getObservacao() {
+		return observacao;
+	}
+	public void setObservacao(String observacao) {
+		this.observacao = observacao;
 	}	
 }

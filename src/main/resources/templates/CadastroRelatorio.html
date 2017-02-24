@@ -7,7 +7,7 @@
 	<title>Cadastro de Relatórios</title>
 </head>
 <section layout:fragment="conteudo">
-	<form class="form-horizontal" method="POST" action="/titulos">
+	<form class="form-horizontal" method="POST" action="/relatorios">
 		<div class="alert alert-success" th:if="${!#strings.isEmpty(mensagem)}">
 			<span th:text="${mensagem}">Relatório salvo com sucesso!!!</span>
 		</div>
@@ -41,21 +41,21 @@
 				<div class="form-group">
 					<label for="status" class="col-sm-2 control-label">Preletor</label>
 					<div class="col-sm-2">
-						<select class="form-control" name="preletor">
+						<select class="form-control" name="idPreletor">
 							<option th:each="preletor : ${todosPreletoresCelulas}"  th:value="${preletor}" th:text="${preletor.idMembro}"></option>
 						</select>
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="qtdPresentes" class="col-sm-2 control-label">Presentes</label>
+					<label for="numeroPresentes" class="col-sm-2 control-label">Presentes</label>
 					<div class="col-sm-4">
-						<input type="number" class="form-control" id="qtdPresentes" name="qtdPresentes"/>
+						<input type="number" class="form-control" id="numeroPresentes" name="numeroPresentes"/>
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="qtdVisitantes" class="col-sm-2 control-label">Visitantes</label>
+					<label for="numeroVisitantes" class="col-sm-2 control-label">Visitantes</label>
 					<div class="col-sm-4">
-						<input type="number" class="form-control" id="qtdVisitantes" name="qtdVisitantes"/>
+						<input type="number" class="form-control" id="numeroVisitantes" name="numeroVisitantes"/>
 					</div>
 				</div>
 				<div class="form-group">

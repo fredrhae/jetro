@@ -2,6 +2,10 @@
 	padding-top: 12px;
 }
 
+.navbar-brand img {
+	max-height: 100%;
+}
+
 .panel-default{
 	margin-left: 10px;
 	margin-right: 10px;
