@@ -35,11 +35,6 @@ public class RelatorioController {
 		return "ListaRelatoriosCelulas";
 	}
 	
-	@RequestMapping
-	public String login(){
-		return "LoginRelatorios";
-	}
-	
 //	@ModelAttribute("todosStatusTitulo")
 //	public List<StatusTitulo> todosStatusTitulo() {
 //		return Arrays.asList(StatusTitulo.values());
