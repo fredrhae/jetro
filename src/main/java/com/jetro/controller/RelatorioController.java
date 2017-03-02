@@ -30,9 +30,14 @@ public class RelatorioController {
 		return mv;
 	}
 	
-	@RequestMapping
+	@RequestMapping("lista")
 	public String pesquisar(){
 		return "ListaRelatoriosCelulas";
+	}
+	
+	@RequestMapping
+	public String login(){
+		return "LoginRelatorios";
 	}
 	
 //	@ModelAttribute("todosStatusTitulo")

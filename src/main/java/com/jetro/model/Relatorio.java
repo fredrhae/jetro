@@ -19,6 +19,9 @@ public class Relatorio {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "IdCelulaRel")
 	private Long idRelatorio;
+
+	@Column(name = "IdCelula")
+	private Long idCelula;
 	
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Temporal(TemporalType.DATE)
@@ -53,11 +56,18 @@ public class Relatorio {
 		this.idRelatorio = id;
 	}
 	
-	public Date getDataVencimento() {
+	public Long getIdCelula() {
+		return idCelula;
+	}
+	public void setIdCelula(Long idCelula) {
+		this.idCelula = idCelula;
+	}
+
+	public Date getData() {
 		return data;
 	}
-	public void setDataVencimento(Date dataVencimento) {
-		this.data = dataVencimento;
+	public void setData(Date data) {
+		this.data = data;
 	}
 	
 	public String getHoraInicio() {
