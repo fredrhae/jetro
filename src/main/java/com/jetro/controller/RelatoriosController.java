@@ -11,7 +11,7 @@ import com.jetro.repository.Relatorios;
 
 @Controller
 @RequestMapping("/relatorios")
-public class RelatorioController {
+public class RelatoriosController {
 	
 	@Autowired
 	private Relatorios relatorios;
@@ -29,15 +29,4 @@ public class RelatorioController {
 		mv.addObject("mensagem", "Relatório salvo com sucesso!");
 		return mv;
 	}
-	
-	@RequestMapping("lista")
-	public String pesquisar(){
-		return "ListaRelatoriosCelulas";
-	}
-	
-//	@ModelAttribute("todosStatusTitulo")
-//	public List<StatusTitulo> todosStatusTitulo() {
-//		return Arrays.asList(StatusTitulo.values());
-//	}
-
 }
