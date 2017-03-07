@@ -8,7 +8,9 @@
 	<title>Lista de Células</title>
 </head>
 <section layout:fragment="conteudo">
-	<button type="submit" class="btn btn-primary">Novo Relatório</button>
+	<a th:href="@{/relatorios/novo}">
+		<button type="submit" id="novo-relatorio" class="btn btn-primary">Novo Relatório</button>	
+	</a>
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<h4 class="panel-title">Relatórios de Células</h4>

@@ -1,140 +1,108 @@
 <!DOCTYPE html>
-<html class="no-js css-menubar" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="utf-8"></meta>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui"></meta>
-  <meta name="description" content="bootstrap admin template"></meta>
-  <meta name="author" content=""></meta>
-  <title>Jetro</title>
-  <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png"></link> 
-  <link rel="shortcut icon" href="assets/images/favicon.ico"></link>
-  <!-- Stylesheets -->
-  <link rel="stylesheet" href="global/css/bootstrap.min.css"></link>
-  <link rel="stylesheet" href="global/css/bootstrap-extend.min.css"></link>
-  <link rel="stylesheet" href="assets/css/site.min.css"></link>
-  <!-- Plugins -->
-  <link rel="stylesheet" href="global/vendor/animsition/animsition.css"></link>
-  <link rel="stylesheet" href="global/vendor/asscrollable/asScrollable.css"></link>
-  <link rel="stylesheet" href="global/vendor/switchery/switchery.css"></link>
-  <link rel="stylesheet" href="global/vendor/intro-js/introjs.css"></link>
-  <link rel="stylesheet" href="global/vendor/slidepanel/slidePanel.css"></link>
-  <link rel="stylesheet" href="global/vendor/flag-icon-css/flag-icon.css"></link>
-  <link rel="stylesheet" href="assets/examples/css/pages/login-v2.css"></link>
-  <!-- Fonts -->
-  <link rel="stylesheet" href="global/fonts/web-icons/web-icons.min.css"></link>
-  <link rel="stylesheet" href="global/fonts/brand-icons/brand-icons.min.css"></link>
-  <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic'></link>
-  <!--[if lt IE 9]>
-    <script src="global/vendor/html5shiv/html5shiv.min.js"></script>
+	<meta charset="utf-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<title>Jetro</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500"/>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css"/>
+	<link rel="stylesheet" href="assets/css/form-elements.css"/>
+    <link rel="stylesheet" href="assets/css/style.css"/>
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-  <!--[if lt IE 10]>
-    <script src="global/vendor/media-match/media.match.min.js"></script>
-    <script src="global/vendor/respond/respond.min.js"></script>
-    <![endif]-->
-  <!-- Scripts -->
-  <script src="global/vendor/modernizr/modernizr.js"></script>
-  <script src="global/vendor/breakpoints/breakpoints.js"></script>
-  <script>
-  Breakpoints();
-  </script>
+
+    <!-- Favicon and touch icons -->
+    <link rel="shortcut icon" href="assets/ico/favicon.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png"/>
+    <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png"/>
 </head>
-<body class="page-login-v2 layout-full page-dark">
-  <!--[if lt IE 8]>
-        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
-  <!-- Page -->
-  <div class="page animsition" data-animsition-in="fade-in" data-animsition-out="fade-out">
-    <div class="page-content">
-      <div class="page-brand-info">
-        <div class="brand">
-          <img class="brand-img" src="images/jetro_logo_branco.png" alt="..."></img>
-        </div>
-        <p class="font-size-20">Sistema de Gestão do Reino.</p>
-		<p class="font-size-14">Copyright Bola de Neve Porto Alegre 2017</p>
-		<p class="font-size-12">Todos os direitos reservados. Programa protegido por leis
-		internacionais de direitos autorais, conforme descrito em contrato.</p>
-      </div>
-      <div class="page-login-main">
-        <div class="brand visible-xs">
-          <img class="brand-img" src="assets/images/logo-blue@2x.png" alt="..."></img>
-          <h3 class="brand-text font-size-40">Jetro</h3>
-        </div>
-        <h3 class="font-size-24">Login</h3>
-        <p>Seja bem vindo ao Jetro.</p>
-        <form name="f" th:action="@{/login}" method="post">
-          <div class="form-group">
-            <label class="sr-only" for="username">E-Mail</label>
-            <input type="text" class="form-control" id="username" name="username" placeholder="E-Mail"></input>
-          </div>
-          <div class="form-group">
-            <label class="sr-only" for="password">Senha</label>
-            <input type="text" class="form-control" id="password" name="password"
-            placeholder="Senha"></input>
-          </div>
-          <div class="form-group clearfix">
-            <div class="checkbox-custom checkbox-inline checkbox-primary pull-left">
-              <input type="checkbox" id="remember" name="checkbox"></input>
-              <label for="inputCheckbox">Lembre-me</label>
+<body>
+	<!-- Top content -->
+    <div class="top-content">
+    	
+        <div class="inner-bg">
+            <div class="container">
+            	               
+                <div class="row display-table">
+                    <div class="col-sm-5 display-cell">
+						<div>
+							<img src="images/jetro_logo.png" alt="..."></img>
+						</div>
+						<p style="font-size: 24px"><strong>Sistema de Gestão do Reino</strong></p>
+                    </div>
+                    
+                    <div class="col-sm-1 middle-border display-cell"></div>
+                    <div class="col-sm-1 display-cell"></div>
+                    	
+                    <div class="col-sm-5 display-cell">
+                    	
+                    	<div class="form-box">
+	                    	<div class="form-top">
+	                    		<div class="form-top-left">
+	                    			<h3>Seja bem vindo ao Jetro</h3>
+	                        		<p>Entre com o usuário e senha para logar:</p>
+	                    		</div>
+	                    		<div class="form-top-right">
+	                    			<i class="fa fa-key"></i>
+	                    		</div>
+	                        </div>
+	                        <div class="form-bottom">
+			                    <form role="form" th:action="@{/login}" method="post" class="login-form">
+			                    	<div class="form-group">
+			                    		<label class="sr-only" for="form-username">Username</label>
+			                        	<input type="text" name="username" placeholder="Usuário..." class="form-username form-control" id="form-username"/>
+			                        </div>
+			                        <div class="form-group">
+			                        	<label class="sr-only" for="form-password">Password</label>
+			                        	<input type="password" name="password" placeholder="Password..." class="form-password form-control" id="form-password"/>
+			                        </div>
+			                        <button type="submit" class="btn">Entrar</button>
+			                    </form>
+		                    </div>
+	                    </div>
+                    </div>
+                </div>
+                
             </div>
-            <a class="pull-right" href="forgot-password.html">Esqueceu sua senha?</a>
-          </div>
-          <button type="submit" class="btn btn-primary btn-block">Entrar</button>
-        </form>
-        <p>Não possui conta? <a href="/registro/novo">Registre-se</a></p>
-        <footer class="page-copyright">
-          <div class="social">
-            <a class="btn btn-icon btn-round social-twitter" href="javascript:void(0)">
-              <i class="icon bd-twitter" aria-hidden="true"></i>
-            </a>
-            <a class="btn btn-icon btn-round social-facebook" href="javascript:void(0)">
-              <i class="icon bd-facebook" aria-hidden="true"></i>
-            </a>
-            <a class="btn btn-icon btn-round social-google-plus" href="javascript:void(0)">
-              <i class="icon bd-google-plus" aria-hidden="true"></i>
-            </a>
-          </div>
-        </footer>
-      </div>
+        </div>
+        
     </div>
-  </div>
-  <!-- End Page -->
-  <!-- Core  -->
-  <script src="global/vendor/jquery/jquery.js"></script>
-  <script src="global/vendor/bootstrap/bootstrap.js"></script>
-  <script src="global/vendor/animsition/animsition.js"></script>
-  <script src="global/vendor/asscroll/jquery-asScroll.js"></script>
-  <script src="global/vendor/mousewheel/jquery.mousewheel.js"></script>
-  <script src="global/vendor/asscrollable/jquery.asScrollable.all.js"></script>
-  <script src="global/vendor/ashoverscroll/jquery-asHoverScroll.js"></script>
-  <!-- Plugins -->
-  <script src="global/vendor/switchery/switchery.min.js"></script>
-  <script src="global/vendor/intro-js/intro.js"></script>
-  <script src="global/vendor/screenfull/screenfull.js"></script>
-  <script src="global/vendor/slidepanel/jquery-slidePanel.js"></script>
-  <script src="global/vendor/jquery-placeholder/jquery.placeholder.js"></script>
-  <!-- Scripts -->
-  <script src="global/js/core.js"></script>
-  <script src="assets/js/site.js"></script>
-  <script src="assets/js/sections/menu.js"></script>
-  <script src="assets/js/sections/menubar.js"></script>
-  <script src="assets/js/sections/gridmenu.js"></script>
-  <script src="assets/js/sections/sidebar.js"></script>
-  <script src="global/js/configs/config-colors.js"></script>
-  <script src="assets/js/configs/config-tour.js"></script>
-  <script src="global/js/components/asscrollable.js"></script>
-  <script src="global/js/components/animsition.js"></script>
-  <script src="global/js/components/slidepanel.js"></script>
-  <script src="global/js/components/switchery.js"></script>
-  <script src="global/js/components/jquery-placeholder.js"></script>
-  <script>
-  (function(document, window, $) {
-    'use strict';
-    var Site = window.Site;
-    $(document).ready(function() {
-      Site.run();
-    });
-  })(document, window, jQuery);
-  </script>
+
+    <!-- Footer -->
+    <footer>
+    	<div class="container">
+    		<div class="row">
+    			
+    			<div class="col-sm-8 col-sm-offset-2">
+    				<div class="footer-border"></div>
+    					<p style="font-size: 16px">Copyright Bola de Neve Porto Alegre 2017</p>
+						<p style="font-size: 13px">Todos os direitos reservados. Programa protegido por leis
+						internacionais de direitos autorais, conforme descrito em contrato.</p>
+    				<!-- <p>Made by Fred Rhae <a href="http://azmind.com" target="_blank"><strong>AZMIND</strong></a> 
+    					having a lot of fun. <i class="fa fa-smile-o"></i></p> -->
+    			</div>
+    			
+    		</div>
+    	</div>
+    </footer>
+
+    <!-- Javascript -->
+    <script src="/js/jquery-3.1.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="assets/js/scripts.js"></script>
+    
+    <!--[if lt IE 10]>
+        <script src="assets/js/placeholder.js"></script>
+    <![endif]-->
 </body>
 </html>
