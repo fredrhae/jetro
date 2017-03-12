@@ -8,12 +8,12 @@
 </head>
 <section layout:fragment="conteudo">
 	<form class="form-horizontal" method="POST" action="/relatorios">
-		<div class="alert alert-success" th:if="${!#strings.isEmpty(mensagem)}">
-			<span th:text="${mensagem}">Relatório salvo com sucesso!!!</span>
-		</div>
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h4 class="panel-tile">Novo Relatório de Célula</h4>
+				<div class="clearfix">
+					<h4 class="panel-tile titulo-panel">Novo Relatório de Célula</h4>
+					<a class="btn btn-link link-panel" href="/relatorios/lista">Volta para pesquisa</a>
+				</div>
 			</div>
 			<div class="panel-body">
 				<div class="form-group">

@@ -8,6 +8,9 @@
 	<title>Lista de Células</title>
 </head>
 <section layout:fragment="conteudo">
+	<div class="alert alert-success" th:if="${!#strings.isEmpty(mensagem)}">
+		<span th:text="${mensagem}">Relatório salvo com sucesso!!!</span>
+	</div>
 	<a th:href="@{/relatorios/novo}">
 		<button type="submit" id="novo-relatorio" class="btn btn-primary">Novo Relatório</button>	
 	</a>
@@ -20,19 +23,37 @@
 				<thead>
 					<tr>
 						<th class="text-center col-md-1">#</th>
+						<th class="text-center col-md-1">Id da Célula</th>
 						<th class="text-center col-md-1">Data</th>
+						<th class="text-center col-md-1">Hora do Início</th>
+						<th class="text-center col-md-1">Hora do Fim</th>
 						<th class="text-center col-md-1">Preletor</th>
-						<th class="text-right col-md-1">Presentes</th>
+						<th class="text-center col-md-1">Presentes</th>
 						<th class="text-center col-md-1">Visitantes</th>
-						<th class="text-center col-md-2">Oração</th>
+						<th class="text-center col-md-1">Oração</th>
 						<th class="text-center col-md-1">Dificuldades</th>
-						<th class="text-center col-md-1">Situação</th>					
+						<th class="text-center col-md-1">Louvor</th>
+						<th class="text-center col-md-2">Situação</th>				
 					</tr>
 				</thead>
 				<tbody>
+					<tr th:each="relatorios: ${relatorios}">
+						<th style="font-weight:normal" class="text-center" th:text="${relatorios.idRelatorio}"></th>
+						<th style="font-weight:normal" class="text-center" th:text="${relatorios.idCelula}"></th>
+						<th style="font-weight:normal" class="text-center" th:text="${{relatorios.data}}"></th>
+						<th style="font-weight:normal" class="text-center" th:text="${relatorios.horaInicio}"></th>
+						<th style="font-weight:normal" class="text-center" th:text="${relatorios.horaFim}"></th>
+						<th style="font-weight:normal" class="text-center" th:text="${relatorios.idPreletor}"></th>
+						<th style="font-weight:normal" class="text-center" th:text="${relatorios.numeroPresentes}"></th>
+						<th style="font-weight:normal" class="text-center" th:text="${relatorios.numeroVisitantes}"></th>
+						<th style="font-weight:normal" class="text-center" th:text="${relatorios.indOracao}"></th>
+						<th style="font-weight:normal" class="text-center" th:text="${relatorios.indDificuldade}"></th>
+						<th style="font-weight:normal" class="text-center" th:text="${relatorios.indLouvor}"></th>
+						<th style="font-weight:normal" class="text-center" th:text="${relatorios.indSituacao}"></th>
+					</tr>
 					<tr>
-						<td colspan="8">Nenhum Relatório foi encontrado</td>
-				</tr>
+						<td colspan="12" th:if="${#lists.isEmpty(relatorios)}">Nenhum Relatório foi encontrado</td>
+					</tr>
 				</tbody>
 			</table> 
 		</div>

@@ -6,6 +6,10 @@
 	max-height: 100%;
 }
 
+.navbar-right {
+	margin-right: 10px;
+}
+
 .panel-default{
 	margin-left: 10px;
 	margin-right: 10px;
@@ -19,4 +23,14 @@
 #novo-relatorio {
 	margin-left: 10px;
 	margin-bottom: 10px;
+}
+
+.link-panel {
+	float: right;
+	padding: 0px;
+}
+
+.titulo-panel {
+	float: left;
+	padding-top: 2px;
 }

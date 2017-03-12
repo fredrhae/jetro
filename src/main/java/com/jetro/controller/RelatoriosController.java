@@ -1,5 +1,6 @@
 package com.jetro.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.joda.time.DateTime;
@@ -12,7 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jetro.model.Relatorio;
@@ -38,6 +38,14 @@ public class RelatoriosController {
 		ModelAndView mv = new ModelAndView("CadastroRelatorio");
 		mv.addObject("nomeCelula", usuarioService.findNomeCelula(pegaIdUsuarioLogado()));
 		mv.addObject("dataDeHoje", getDataHojeSimples());
+		return mv;
+	}
+	
+	@RequestMapping("/lista")
+	public ModelAndView listaRelatorios(){
+		ModelAndView mv = new ModelAndView("ListaRelatoriosCelulas");
+		List<Relatorio> todosRelatorios = relatorioRepository.findAll();
+		mv.addObject("relatorios", todosRelatorios);
 		return mv;
 	}
 
@@ -76,7 +84,7 @@ public class RelatoriosController {
 	public ModelAndView salvar(Relatorio relatorio) throws Exception{
 		carregaDadosRelatorio(relatorio);
 		relatorioRepository.save(relatorio);
-		ModelAndView mv = new ModelAndView("CadastroRelatorio");
+		ModelAndView mv = new ModelAndView("ListaRelatoriosCelulas");
 		mv.addObject("mensagem", "Relatório salvo com sucesso!");
 		return mv;
 	}

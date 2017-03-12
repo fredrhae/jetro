@@ -12,9 +12,14 @@
 	<nav class="navbar navbar-inverse navbar-static-top">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="#">
-					<img alt="AlgaWorks" src="/images/jetro_logo_branco.png"/>
+				<a class="navbar-brand" href="/relatorios/lista">
+					<img alt="Jetro" src="/images/jetro_logo_branco.png"/>
 				</a>
+			</div>
+			<div class="nav navbar-nav navbar-right">
+				<form th:action="@{/logout}" method="post" >
+    				<input class="btn btn-default navbar-btn" id="logout" type="submit" value="Sair"/>
+				</form>  
 			</div>
 		</div>
 	</nav>

@@ -32,16 +32,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.csrf().disable()
 			.authorizeRequests()
 				.antMatchers(new String[] {"/global/**", "/assets/**","/images/**", "/login"}).permitAll()
-			.anyRequest().authenticated()
+				.anyRequest().authenticated()
 			.and()
 			.formLogin()
 				.loginPage("/login")
 				.and()
-            .logout() 
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout")) 
-                .logoutSuccessUrl("/") 
-                .permitAll()
-                .and()
+            .logout()
+            	.permitAll()
+            .and()
             .httpBasic();
 
 		

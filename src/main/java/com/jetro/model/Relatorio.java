@@ -58,10 +58,10 @@ public class Relatorio {
 	@Column(name = "Observacao")
 	private String observacao;
 	
-	public Long getId() {
+	public Long getIdRelatorio() {
 		return idRelatorio;
 	}
-	public void setId(Long id) {
+	public void setIdRelatorio(Long id) {
 		this.idRelatorio = id;
 	}
 	

@@ -1,7 +1,9 @@
 package com.jetro.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -10,7 +12,7 @@ public class LoginController {
 	
 	@RequestMapping()
     public ModelAndView handleRequest() throws Exception {
-        ModelAndView model = new ModelAndView("ListaRelatoriosCelulas");
+        ModelAndView model = new ModelAndView("redirect:/relatorios/lista");
         return model;
     }
 	
