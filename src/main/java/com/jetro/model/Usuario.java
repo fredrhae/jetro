@@ -79,6 +79,4 @@ public class Usuario {
 	public void setIndAdmin(Integer indAdmin) {
 		this.indAdmin = indAdmin;
 	}
-	
-	
 }

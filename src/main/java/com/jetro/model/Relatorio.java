@@ -43,8 +43,17 @@ public class Relatorio {
 	@Column(name = "NumVisitantes")
 	private Integer numeroVisitantes;
 	
+	@Column(name = "IndOracao")
+	private String indOracao;
+	
+	@Column(name = "IndDificuldade")
+	private String indDificuldade;
+	
 	@Column(name = "IndLouvor")
-	private String louvor;
+	private String indLouvor;
+	
+	@Column(name = "IndSituacao")
+	private String indSituacao;
 	
 	@Column(name = "Observacao")
 	private String observacao;
@@ -105,11 +114,32 @@ public class Relatorio {
 		this.numeroVisitantes = numeroVisitantes;
 	}
 	
-	public String getLouvor() {
-		return louvor;
+	public String getIndLouvor() {
+		return indLouvor;
 	}
-	public void setLouvor(String louvor) {
-		this.louvor = louvor;
+	public void setIndLouvor(String indLouvor) {
+		this.indLouvor = indLouvor;
+	}
+	
+	public String getIndOracao() {
+		return indOracao;
+	}
+	public void setIndOracao(String indOracao) {
+		this.indOracao = indOracao;
+	}
+	
+	public String getIndDificuldade() {
+		return indDificuldade;
+	}
+	public void setIndDificuldade(String indDificuldade) {
+		this.indDificuldade = indDificuldade;
+	}
+	
+	public String getIndSituacao() {
+		return indSituacao;
+	}
+	public void setIndSituacao(String indSituacao) {
+		this.indSituacao = indSituacao;
 	}
 	
 	public String getObservacao() {
