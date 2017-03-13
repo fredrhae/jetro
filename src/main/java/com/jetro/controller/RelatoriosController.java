@@ -85,7 +85,7 @@ public class RelatoriosController {
 	public ModelAndView salvar(Relatorio relatorio) throws Exception{
 		carregaDadosRelatorio(relatorio);
 		relatorioRepository.save(relatorio);
-		ModelAndView mv = new ModelAndView("ListaRelatoriosCelulas");
+		ModelAndView mv = new ModelAndView("CadastroRelatorio");
 		mv.addObject("mensagem", "Relatório salvo com sucesso!");
 		return mv;
 	}

@@ -10,6 +10,11 @@
 	margin-right: 10px;
 }
 
+.navbar-inverse {
+	background-color: #2CB0A7;
+	border-color: #2CB0A7;
+}
+
 .panel-default{
 	margin-left: 10px;
 	margin-right: 10px;
@@ -23,7 +28,16 @@
 #novo-relatorio {
 	margin-left: 10px;
 	margin-bottom: 10px;
+	background: #2cb0a7;
+	border-color: #2cb0a7;
 }
+#novo-relatorio:hover { opacity: 0.6; color: #fff; }
+
+#novo-relatorio:active { outline: 0; opacity: 0.6; color: #fff; -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none; }
+
+#novo-relatorio:focus { outline: 0; opacity: 0.6; background: #2cb0a7; color: #fff; }
+
+#novo-relatorio:active:focus, #novo-relatorio.active:focus { outline: 0; opacity: 0.6; background: #2cb0a7; color: #fff; }
 
 .link-panel {
 	float: right;
