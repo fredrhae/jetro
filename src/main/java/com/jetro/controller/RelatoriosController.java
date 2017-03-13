@@ -11,6 +11,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -86,6 +87,14 @@ public class RelatoriosController {
 		relatorioRepository.save(relatorio);
 		ModelAndView mv = new ModelAndView("ListaRelatoriosCelulas");
 		mv.addObject("mensagem", "Relatório salvo com sucesso!");
+		return mv;
+	}
+	
+	@RequestMapping(value="{idRelatorio}", method = RequestMethod.DELETE)
+	public ModelAndView excluir(@PathVariable Long idRelatorio) {
+		relatorioRepository.delete(idRelatorio);
+		ModelAndView mv = new ModelAndView("redirect:/relatorios/lista");
+		mv.addObject("mensagem", "Relatório apagado com sucesso!");
 		return mv;
 	}
 }
