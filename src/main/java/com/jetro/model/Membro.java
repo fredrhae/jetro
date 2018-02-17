@@ -30,7 +30,7 @@ public class Membro {
 	@Column(name = "DtNascimento")
 	private Date dataNascimento;
 	
-	@Column(name = "IdRegião")
+	@Column(name = "IdRegiao")
 	private Integer idRegiao;
 	
 	@Column(name = "IdPais")
