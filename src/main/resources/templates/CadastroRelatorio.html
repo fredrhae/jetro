@@ -28,24 +28,29 @@
 				<div class="form-group">
 					<label for="data" class="col-sm-2 control-label">Data</label>
 					<div class="col-sm-4">
-						<input type="text" class="form-control" id="data" name="data" th:value="${dataDeHoje}"/>
+						<input type="date" class="form-control" id="data" name="data" th:value="${dataDeHoje}"/>
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="horaInicio" class="col-sm-2 control-label">Hora de Início</label>
-					<div class="col-sm-1">
+					<div class="col-sm-2">
 						<input type="text" class="form-control" id="horaInicio" name="horaInicio" maxlength="4"/>
 					</div>
+				</div>
+				<div class="form-group">
 					<label for="horaFim" class="col-sm-2 control-label">Hora de Fim</label>
-					<div class="col-sm-1">
+					<div class="col-sm-2">
 						<input type="text" class="form-control" id="horaFim" name="horaFim" maxlength="4"/>
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="status" class="col-sm-2 control-label">Preletor</label>
 					<div class="col-sm-2">
-						<select class="form-control" name="idPreletor">
-							<option th:each="entry : ${listaPreletores.entrySet()}"  th:value="${entry.key}" th:text="${entry.value}"></option>
+						<select class="form-control" id="preletor" name="preletor" >
+							<option th:each="entry : ${listaPreletores.entrySet()}"
+									th:value="${entry.key}"
+									th:text="${entry.value}">
+							</option>
 						</select>
 					</div>
 				</div>
@@ -71,11 +76,17 @@
 	                </div>
 				</div>
 				<div class="form-group">
-					<label for="observacao" class="col-sm-2 control-label">Observação</label>
+					<label for="observacao" class="col-sm-2 control-label">Dificuldades Naturais</label>
 				    <div class="col-md-4">
-			            <textarea class="form-control" rows="3" maxlength="250" placeholder="Caso tenha alguma observação, usar este espaço"></textarea>
+			            <textarea class="form-control" rows="3" maxlength="250" placeholder="Caso tenha tido alguma dificuldade, usar este espaço para descrevê-la"></textarea>
 			        </div>
         		</div>
+				<div class="form-group">
+					<label for="oracao" class="col-sm-2 control-label">Dificuldades Espirituais</label>
+					<div class="col-md-4">
+						<textarea class="form-control" rows="3" maxlength="250" placeholder="Caso tenha tido alguma dificuldade espiritual, usar este espaço para descrevê-la"></textarea>
+					</div>
+				</div>
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
 						<button type="submit" class="btn btn-primary btn-jetro">Salvar</button>

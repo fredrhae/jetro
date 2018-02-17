@@ -2,13 +2,7 @@ package com.jetro.model;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -23,8 +17,7 @@ public class Relatorio {
 	@Column(name = "IdCelula")
 	private Long idCelula;
 	
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "Data")
 	private Date data;
 	
@@ -33,9 +26,10 @@ public class Relatorio {
 	
 	@Column(name = "HrFim")
 	private String horaFim;
-	
-	@Column(name = "IdPreletor")
-	private Integer idPreletor;
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "IdPreletor", referencedColumnName = "IdMembro")
+	private Membro preletor;
 	
 	@Column(name = "NumPresentes")
 	private Integer numeroPresentes;
@@ -57,7 +51,10 @@ public class Relatorio {
 	
 	@Column(name = "Observacao")
 	private String observacao;
-	
+
+	@Column(name = "Oracao")
+	private String oracao;
+
 	public Long getIdRelatorio() {
 		return idRelatorio;
 	}
@@ -93,11 +90,11 @@ public class Relatorio {
 		this.horaFim = horaFim;
 	}
 	
-	public Integer getIdPreletor() {
-		return idPreletor;
+	public Membro getPreletor() {
+		return preletor;
 	}
-	public void setIdPreletor(Integer idPreletor) {
-		this.idPreletor = idPreletor;
+	public void setPreletor(Membro preletor) {
+		this.preletor = preletor;
 	}
 	
 	public Integer getNumeroPresentes() {
@@ -147,5 +144,12 @@ public class Relatorio {
 	}
 	public void setObservacao(String observacao) {
 		this.observacao = observacao;
-	}	
+	}
+
+	public String getOracao() {
+		return oracao;
+	}
+	public void setOracao(String oracao) {
+		this.observacao = oracao;
+	}
 }

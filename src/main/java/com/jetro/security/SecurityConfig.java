@@ -15,8 +15,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private DataSource dataSource;
 	
-	private String selectUserQuery = "SELECT IdUsuario, Senha, IndAtivo FROM usuario WHERE ( IdUsuario = ? AND IndAtivo=1)";
-	private String selectRoleQuery = "SELECT IdUsuario, 'USER', IndAtivo FROM usuario WHERE ( IdUsuario = ? AND IndAtivo=1)";
+	private String selectUserQuery = "SELECT IdUsuario, Senha, IndAtivo FROM Usuario WHERE ( IdUsuario = ? AND IndAtivo=1)";
+	private String selectRoleQuery = "SELECT IdUsuario, 'USER', IndAtivo FROM Usuario WHERE ( IdUsuario = ? AND IndAtivo=1)";
 
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {

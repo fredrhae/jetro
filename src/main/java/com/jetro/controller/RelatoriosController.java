@@ -3,6 +3,7 @@ package com.jetro.controller;
 import java.util.List;
 import java.util.Map;
 
+import com.jetro.model.Membro;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
@@ -70,8 +71,7 @@ public class RelatoriosController {
 
 	private String pegaIdUsuarioLogado() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-	    String idUsuario = auth.getName(); //pega usuario logado
-		return idUsuario;
+		return auth.getName(); //pega usuario logado;
 	}	
 
 	@ModelAttribute("listaPreletores")
