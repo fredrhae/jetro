@@ -7,7 +7,8 @@
 	<title>Cobranca</title>
 	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"/>
 	<link rel="stylesheet" type="text/css" href="/css/style.css"/>
-    <!-- Favicon and touch icons -->
+	<link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet"/>
+	<!-- Favicon and touch icons -->
     <link rel="shortcut icon" href="images/icone/favicon-jetro.png"/>
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/icone/apple-touch-icon-144-jetro.png"/>
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/icone/apple-touch-icon-114-jetro.png"/>
@@ -15,16 +16,16 @@
     <link rel="apple-touch-icon-precomposed" href="images/icone/apple-touch-icon-57-jetro.png"/>
 </head>
 <body>
-	<nav class="navbar navbar-inverse navbar-static-top">
-		<div class="container-fluid">
-			<div class="navbar-header">
+	<nav class="navbar fixed-top navbar-inverse navbar-fixed-top mb-3 m-0 p-0">
+		<div class="container">
+			<div class="navbar-header ml-2">
 				<a class="navbar-brand" href="/relatorios/lista">
-					<img alt="Jetro" src="/images/jetro_logo_branco.png"/>
+					<img class="img-responsive" height="80"  alt="Jetro" src="/images/jetro_logo_branco.png"/>
 				</a>
 			</div>
-			<div class="nav navbar-nav navbar-right">
+			<div class="nav navbar-nav ml-auto">
 				<form th:action="@{/logout}" method="post" >
-    				<input class="btn btn-default navbar-btn" id="logout" type="submit" value="Sair"/>
+    				<input class="btn btn-light nav-item" id="logout" type="submit" value="Sair"/>
 				</form>  
 			</div>
 		</div>
