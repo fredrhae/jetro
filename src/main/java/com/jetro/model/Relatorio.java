@@ -14,8 +14,9 @@ public class Relatorio {
 	@Column(name = "IdCelulaRel")
 	private Long idRelatorio;
 
-	@Column(name = "IdCelula")
-	private Long idCelula;
+	@OneToOne(fetch = FetchType.EAGER, cascade={CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
+	@JoinColumn(name = "IdCelula", referencedColumnName = "IdCelula")
+	private Celula celula;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "Data")
@@ -27,7 +28,7 @@ public class Relatorio {
 	@Column(name = "HrFim")
 	private String horaFim;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER, cascade={CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
 	@JoinColumn(name = "IdPreletor", referencedColumnName = "IdMembro")
 	private Membro preletor;
 	
@@ -62,11 +63,11 @@ public class Relatorio {
 		this.idRelatorio = id;
 	}
 	
-	public Long getIdCelula() {
-		return idCelula;
+	public Celula getCelula() {
+		return celula;
 	}
-	public void setIdCelula(Long idCelula) {
-		this.idCelula = idCelula;
+	public void setCelula(Celula celula) {
+		this.celula = celula;
 	}
 
 	public Date getData() {

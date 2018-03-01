@@ -61,7 +61,7 @@ public class RelatoriosController {
 	    
 	    if(usuarioService.checaUsuarioEstaAtivoNaCelula(idUsuario))
 	    {
-		    relatorio.setIdCelula(usuarioService.findIdCelula(idUsuario));
+		    relatorio.setCelula(usuarioService.findCelula(idUsuario));
 	    }
 	    
 	    relatorio.setIndDificuldade("N");
