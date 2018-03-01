@@ -6,7 +6,7 @@
 	<groupId>com.jetro</groupId>
 	<artifactId>jetro</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 
 	<name>jetro</name>
 	<description>Project to manage cells from the Snow ball church.</description>

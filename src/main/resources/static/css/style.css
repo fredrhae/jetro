@@ -1,3 +1,12 @@
+body {
+	height: 100%;
+	width: 100%;
+	padding-top: 130px;
+	overflow-x: hidden;
+	overflow-y: auto;
+	position: absolute;
+}
+
 .navbar-brand {
 	padding-top: 12px;
 }
@@ -15,7 +24,7 @@
 	border-color: #2CB0A7;
 }
 
-.panel-default{
+.card-default{
 	margin-left: 10px;
 	margin-right: 10px;
 }
@@ -42,12 +51,16 @@
 
 .btn-jetro:active:focus, .btn-jetro.active:focus { outline: 0; opacity: 0.6; background: #2cb0a7; color: #fff; }
 
-.link-panel {
+.link-card {
 	float: right;
 	padding: 0px;
 }
 
-.titulo-panel {
+.titulo-card {
 	float: left;
 	padding-top: 2px;
+}
+
+.table-scrollable{
+    overflow: auto;
 }

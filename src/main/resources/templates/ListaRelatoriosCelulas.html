@@ -14,12 +14,12 @@
 	<a th:href="@{/relatorios/novo}">
 		<button type="submit" id="novo-relatorio" class="btn btn-primary btn-jetro">Novo Relatório</button>	
 	</a>
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h4 class="panel-title">Relatórios de Células</h4>
+	<div class="d-flex justify-content-center card card-default">
+		<div class="card-header">
+			<h4 class="card-title">Relatórios de Células</h4>
 		</div>
-		<div class="panel-body">
-			<table class="table table-bordered table-striped">
+		<div class="card-body table-responsive">
+			<table class="table table-bordered table-striped table-scrollable">
 				<thead>
 					<tr>
 						<th class="text-center col-md-1">#</th>
@@ -54,7 +54,7 @@
 						<td class="text-center">
 							<a class="btn btn-link btn-xs" data-toggle="modal" data-target="#confirmacaoExclusaoModal"
 	   								th:attr="data-idrelatorio=${relatorio.idRelatorio}">
-	   							<span class="glyphicon glyphicon-remove"></span>
+	   							<span class="fas fa-trash"></span>
 	   						</a>
 	   					</td>
 					</tr>
