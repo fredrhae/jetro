@@ -22,25 +22,24 @@
 			<table class="table table-bordered table-striped table-scrollable">
 				<thead>
 					<tr>
-						<th class="text-center col-md-1">#</th>
-						<th class="text-center col-md-1">Id da Célula</th>
-						<th class="text-center col-md-1">Data</th>
-						<th class="text-center col-md-1">Hora do Início</th>
-						<th class="text-center col-md-1">Hora do Fim</th>
-						<th class="text-center col-md-1">Preletor</th>
-						<th class="text-center col-md-1">Presentes</th>
-						<th class="text-center col-md-1">Visitantes</th>
-						<th class="text-center col-md-1">Oração</th>
-						<th class="text-center col-md-1">Dificuldades</th>
-						<th class="text-center col-md-1">Louvor</th>
-						<th class="text-center col-md-2">Situação</th>
-						<th class="col-md-1"></th>		
+						<th class="text-center" style="width: 1px">#</th>
+						<th class="text-center">Célula</th>
+						<th class="text-center">Data</th>
+						<th class="text-center">Hora do Início</th>
+						<th class="text-center">Hora do Fim</th>
+						<th class="text-center">Preletor</th>
+						<th class="text-center">Presentes</th>
+						<th class="text-center">Visitantes</th>
+						<th class="text-center">Oração</th>
+						<th class="text-center">Dificuldades</th>
+						<th class="text-center">Louvor</th>
+						<th class=""></th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr th:each="relatorio: ${relatorios}">
 						<td class="text-center" th:text="${relatorio.idRelatorio}"></td>
-						<td class="text-center" th:text="${relatorio.idCelula}"></td>
+						<td class="text-center" th:text="${relatorio.celula.nomeCelula}"></td>
 						<td class="text-center" th:text="${{relatorio.data}}"></td>
 						<td class="text-center" th:text="${relatorio.horaInicio}"></td>
 						<td class="text-center" th:text="${relatorio.horaFim}"></td>
@@ -49,8 +48,11 @@
 						<td class="text-center" th:text="${relatorio.numeroVisitantes}"></td>
 						<td class="text-center" th:text="${relatorio.indOracao}"></td>
 						<td class="text-center" th:text="${relatorio.indDificuldade}"></td>
-						<td class="text-center" th:text="${relatorio.indLouvor}"></td>
-						<td class="text-center" th:text="${relatorio.indSituacao}"></td>
+						<div th:switch="${relatorio.indLouvor}">
+							<td class="text-center" th:case="'R'" th:text="Rádio"></td>
+							<td class="text-center" th:case="'M'" th:text="Ministério"></td>
+							<td class="text-center" th:case="*" th:text="Não selecionado"></td>
+						</div>
 						<td class="text-center">
 							<a class="btn btn-link btn-xs" data-toggle="modal" data-target="#confirmacaoExclusaoModal"
 	   								th:attr="data-idrelatorio=${relatorio.idRelatorio}">

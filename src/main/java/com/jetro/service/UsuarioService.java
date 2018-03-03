@@ -34,6 +34,11 @@ public class UsuarioService {
 		MembroCelula membroCelula = findMembroCelulaPorId(id);
 		return membroCelula.getIdCelula();
 	}
+
+	public Celula findCelula(String id){
+		MembroCelula membroCelula = findMembroCelulaPorId(id);
+		return celulaRepository.findOne(membroCelula.getIdCelula());
+	}
 	
 	public MembroCelula findMembroCelulaPorId(String id) {
 		Usuario usuario = findOne(id);
