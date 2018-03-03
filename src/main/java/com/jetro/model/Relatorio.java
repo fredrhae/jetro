@@ -53,6 +53,9 @@ public class Relatorio {
 	@Column(name = "Observacao")
 	private String observacao;
 
+	@Column(name = "Espiritual")
+	private String espiritual;
+
 	@Column(name = "Oracao")
 	private String oracao;
 
@@ -147,10 +150,17 @@ public class Relatorio {
 		this.observacao = observacao;
 	}
 
+	public String getEspiritual() {
+		return espiritual;
+	}
+	public void setEspiritual(String espiritual) {
+		this.espiritual = espiritual;
+	}
+
 	public String getOracao() {
 		return oracao;
 	}
 	public void setOracao(String oracao) {
-		this.observacao = oracao;
+		this.oracao = oracao;
 	}
 }

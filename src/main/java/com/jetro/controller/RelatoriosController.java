@@ -3,7 +3,7 @@ package com.jetro.controller;
 import java.util.List;
 import java.util.Map;
 
-import com.jetro.model.Membro;
+import com.jetro.model.Celula;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
@@ -37,42 +37,18 @@ public class RelatoriosController {
 	
 	@RequestMapping("/novo")
 	public ModelAndView novoRelatorio(){
-		ModelAndView mv = new ModelAndView("CadastroRelatorio");
-		mv.addObject("nomeCelula", usuarioService.findNomeCelula(pegaIdUsuarioLogado()));
-		mv.addObject("dataDeHoje", getDataHojeSimples());
+		ModelAndView mv = getModelAndViewCadastroRelatorio();
 		return mv;
 	}
-	
+
 	@RequestMapping("/lista")
 	public ModelAndView listaRelatorios(){
 		ModelAndView mv = new ModelAndView("ListaRelatoriosCelulas");
-		List<Relatorio> todosRelatorios = relatorioRepository.findAll();
-		mv.addObject("relatorios", todosRelatorios);
+		Celula celulaFromUser = usuarioService.findCelula(pegaIdUsuarioLogado());
+		List<Relatorio> relatoriosDoUsuario = relatorioRepository.findByCelula(celulaFromUser);
+		mv.addObject("relatorios", relatoriosDoUsuario);
 		return mv;
 	}
-
-	private String getDataHojeSimples() {
-		DateTimeFormatter dtf = DateTimeFormat.forPattern("MM/dd/yyyy");
-		return dtf.print(DateTime.now());
-	}
-	
-	private void carregaDadosRelatorio(Relatorio relatorio) {
-		String idUsuario = pegaIdUsuarioLogado();
-	    
-	    if(usuarioService.checaUsuarioEstaAtivoNaCelula(idUsuario))
-	    {
-		    relatorio.setCelula(usuarioService.findCelula(idUsuario));
-	    }
-	    
-	    relatorio.setIndDificuldade("N");
-	    relatorio.setIndOracao("N");
-	    relatorio.setIndSituacao("A");
-	}
-
-	private String pegaIdUsuarioLogado() {
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		return auth.getName(); //pega usuario logado;
-	}	
 
 	@ModelAttribute("listaPreletores")
 	public Map<Long, String> listaPreletores(){
@@ -85,7 +61,7 @@ public class RelatoriosController {
 	public ModelAndView salvar(Relatorio relatorio) throws Exception{
 		carregaDadosRelatorio(relatorio);
 		relatorioRepository.save(relatorio);
-		ModelAndView mv = new ModelAndView("CadastroRelatorio");
+		ModelAndView mv = getModelAndViewCadastroRelatorio();
 		mv.addObject("mensagem", "Relatório salvo com sucesso!");
 		return mv;
 	}
@@ -95,6 +71,36 @@ public class RelatoriosController {
 		relatorioRepository.delete(idRelatorio);
 		ModelAndView mv = new ModelAndView("redirect:/relatorios/lista");
 		mv.addObject("mensagem", "Relatório apagado com sucesso!");
+		return mv;
+	}
+
+	private String getDataHojeSimples() {
+		DateTimeFormatter dtf = DateTimeFormat.forPattern("MM/dd/yyyy");
+		return dtf.print(DateTime.now());
+	}
+
+	private void carregaDadosRelatorio(Relatorio relatorio) {
+		String idUsuario = pegaIdUsuarioLogado();
+
+		if(usuarioService.checaUsuarioEstaAtivoNaCelula(idUsuario))
+		{
+			relatorio.setCelula(usuarioService.findCelula(idUsuario));
+		}
+
+		relatorio.setIndDificuldade("N");
+		relatorio.setIndOracao("N");
+		relatorio.setIndSituacao("A");
+	}
+
+	private String pegaIdUsuarioLogado() {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		return auth.getName(); //pega usuario logado;
+	}
+
+	private ModelAndView getModelAndViewCadastroRelatorio() {
+		ModelAndView mv = new ModelAndView("CadastroRelatorio");
+		mv.addObject("nomeCelula", usuarioService.findNomeCelula(pegaIdUsuarioLogado()));
+		mv.addObject("dataDeHoje", getDataHojeSimples());
 		return mv;
 	}
 }
