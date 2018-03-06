@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +23,7 @@ import com.jetro.model.Relatorio;
 import com.jetro.repository.RelatorioRepository;
 import com.jetro.service.MembroService;
 import com.jetro.service.UsuarioService;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/relatorios")
@@ -37,7 +40,7 @@ public class RelatoriosController {
 	
 	@RequestMapping("/novo")
 	public ModelAndView novoRelatorio(){
-		ModelAndView mv = getModelAndViewCadastroRelatorio();
+		ModelAndView mv = getModelAndViewCadastroRelatorio(new Relatorio());
 		return mv;
 	}
 
@@ -56,21 +59,23 @@ public class RelatoriosController {
 		Long idCelula = usuarioService.findIdCelula(idUsuario);
 		return membroService.getListaPreletoresCelula(idCelula);
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST)
-	public ModelAndView salvar(Relatorio relatorio) throws Exception{
-		carregaDadosRelatorio(relatorio);
+	public ModelAndView salvar(@Validated Relatorio relatorio, Errors errors, RedirectAttributes attributes) throws Exception{
+		ModelAndView mv = getModelAndViewCadastroRelatorio(relatorio);
+		if(errors.hasErrors()) {
+			return mv;
+		}
 		relatorioRepository.save(relatorio);
-		ModelAndView mv = getModelAndViewCadastroRelatorio();
-		mv.addObject("mensagem", "Relatório salvo com sucesso!");
-		return mv;
+		attributes.addFlashAttribute("mensagem", "Relatório salvo com sucesso!");
+		return new ModelAndView( "redirect:/relatorios/novo");
 	}
 	
 	@RequestMapping(value="{idRelatorio}", method = RequestMethod.DELETE)
-	public ModelAndView excluir(@PathVariable Long idRelatorio) {
+	public ModelAndView excluir(@PathVariable Long idRelatorio, RedirectAttributes attributes) {
 		relatorioRepository.delete(idRelatorio);
 		ModelAndView mv = new ModelAndView("redirect:/relatorios/lista");
-		mv.addObject("mensagem", "Relatório apagado com sucesso!");
+		attributes.addFlashAttribute("mensagem", "Relatório apagado com sucesso!");
 		return mv;
 	}
 
@@ -79,7 +84,7 @@ public class RelatoriosController {
 		return dtf.print(DateTime.now());
 	}
 
-	private void carregaDadosRelatorio(Relatorio relatorio) {
+	private void carregaDadosIniciaisRelatorio(Relatorio relatorio) {
 		String idUsuario = pegaIdUsuarioLogado();
 
 		if(usuarioService.checaUsuarioEstaAtivoNaCelula(idUsuario))
@@ -97,10 +102,12 @@ public class RelatoriosController {
 		return auth.getName(); //pega usuario logado;
 	}
 
-	private ModelAndView getModelAndViewCadastroRelatorio() {
+	private ModelAndView getModelAndViewCadastroRelatorio(Relatorio relatorio) {
+		carregaDadosIniciaisRelatorio(relatorio);
 		ModelAndView mv = new ModelAndView("CadastroRelatorio");
 		mv.addObject("nomeCelula", usuarioService.findNomeCelula(pegaIdUsuarioLogado()));
 		mv.addObject("dataDeHoje", getDataHojeSimples());
+		mv.addObject(relatorio);
 		return mv;
 	}
 }
