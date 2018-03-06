@@ -7,10 +7,8 @@
 	<title>Cadastro de Relatórios</title>
 </head>
 <section layout:fragment="conteudo">
-	<div class="alert alert-success" th:if="${!#strings.isEmpty(mensagem)}">
-		<span th:text="${mensagem}"></span>
-	</div>
-	<form class="form-horizontal" method="POST" action="/relatorios">
+	<form class="form-horizontal" method="POST" action="/relatorios" th:object="${relatorio}">
+		<div layout:include="Mensagem"></div>
 		<div class="d-flex justify-content-start card card-default">
 			<div class="col-md-12">
 				<div class="card-header">
@@ -21,33 +19,38 @@
 				</div>
 				<div class="card-body col-md-12">
 					<div class="form-group col-md-8">
-						<label  for="idCelula" class="col-md-4 control-label">Célula</label>
+						<label  for="celula" class="col-md-4 control-label">Célula</label>
 						<div>
-							<input type="text" class="form-control" th:value="${nomeCelula}" readonly="readonly"/>
+							<input type="text" class="form-control"
+								   th:value="${nomeCelula}" readonly="readonly"/>
 						</div>
 					</div>
 					<div class="form-group col-md-8">
 						<label for="data" class="col-md-4 control-label">Data</label>
 						<div class="col-md-4">
-							<input type="date" class="form-control" id="data" name="data" th:value="${dataDeHoje}"/>
+							<input type="date" class="form-control" th:classappend="${#fields.hasErrors('data')} ? is-invalid"
+								   id="data"  th:field="*{data}" th:value="${dataDeHoje}"/>
 						</div>
 					</div>
 					<div class="form-group col-md-8">
 						<label for="horaInicio" class="col-md-4 control-label">Hora de Início</label>
 						<div class="col-md-4">
-							<input type="text" class="form-control" id="horaInicio" name="horaInicio" maxlength="4"/>
+							<input type="text" class="form-control" th:classappend="${#fields.hasErrors('horaInicio')} ? is-invalid"
+								   id="horaInicio" th:field="*{horaInicio}" maxlength="4"/>
 						</div>
 					</div>
-					<div class="form-group col-md-8">
+					<div class="form-group col-md-8" >
 						<label for="horaFim" class="col-md-4 control-label">Hora de Fim</label>
 						<div class="col-md-4">
-							<input type="text" class="form-control" id="horaFim" name="horaFim" maxlength="4"/>
+							<input type="text" class="form-control" th:classappend="${#fields.hasErrors('horaFim')} ? is-invalid"
+								   id="horaFim" th:field="*{horaFim}" maxlength="4"/>
 						</div>
 					</div>
 					<div class="form-group col-md-8">
-						<label for="status" class="col-md-4 control-label">Preletor</label>
+						<label for="preletor" class="col-md-4 control-label">Preletor</label>
 						<div>
-							<select class="form-control" id="preletor" name="preletor" >
+							<select class="form-control" id="preletor" th:field="*{preletor}"
+									th:classappend="${#fields.hasErrors('preletor')} ? is-invalid">
 								<option th:each="entry : ${listaPreletores.entrySet()}"
 										th:value="${entry.key}"
 										th:text="${entry.value}">
@@ -58,40 +61,42 @@
 					<div class="form-group col-md-8">
 						<label for="numeroPresentes" class="col-md-4 control-label">Presentes</label>
 						<div class="col-md-4">
-							<input type="number" class="form-control" id="numeroPresentes" name="numeroPresentes"/>
+							<input type="number" class="form-control" th:classappend="${#fields.hasErrors('numeroPresentes')} ? is-invalid"
+								   id="numeroPresentes" th:field="*{numeroPresentes}"/>
 						</div>
 					</div>
 					<div class="form-group col-md-8">
 						<label for="numeroVisitantes" class="col-md-4 control-label">Visitantes</label>
 						<div class="col-md-4">
-							<input type="number" class="form-control" id="numeroVisitantes" name="numeroVisitantes"/>
+							<input type="number" class="form-control" th:classappend="${#fields.hasErrors('numeroVisitantes')} ? is-invalid"
+								   id="numeroVisitantes" th:field="*{numeroVisitantes}"/>
 						</div>
 					</div>
 					<div class="form-group col-md-8">
-						<label for="louvor" class="col-md-4 control-label">Louvor</label>
+						<label for="indLouvor" class="col-md-4 control-label">Louvor</label>
 						<div class="col-md-4">
 							<div class="btn-group" data-toggle="buttons">
-								<label class="btn btn-default"><input type="radio" id="radio" name="indLouvor" value="R" checked="checked"/>Rádio</label>
-								<label class="btn btn-default"><input type="radio" id="ministro" name="indLouvor" value="M"/>Ministro</label>
+								<label class="btn btn-light active"><input type="radio" id="radio" th:field="*{indLouvor}" autocomplete="off" value="R" checked="checked"/>Rádio</label>
+								<label class="btn btn-light"><input type="radio" id="ministro" th:field="*{indLouvor}" autocomplete="off" value="M"/>Ministro</label>
 							</div>
 						</div>
 					</div>
 					<div class="form-group col-md-8">
 						<label for="observacao" class="col-md-4 control-label">Dificuldades Naturais</label>
 						<div>
-							<textarea class="form-control" id="observacao" name="observacao" rows="3" maxlength="250" placeholder="Caso tenha tido alguma dificuldade, usar este espaço para descrevê-la"></textarea>
+							<textarea class="form-control" id="observacao" th:field="*{observacao}" rows="3" maxlength="250" placeholder="Caso tenha tido alguma dificuldade, usar este espaço para descrevê-la"></textarea>
 						</div>
 					</div>
 					<div class="form-group col-md-8">
 						<label for="espiritual" class="col-md-4 control-label">Dificuldades Espirituais</label>
 						<div>
-							<textarea class="form-control" id="espiritual" name="espiritual" rows="3" maxlength="250" placeholder="Caso tenha tido alguma dificuldade espiritual, usar este espaço para descrevê-la"></textarea>
+							<textarea class="form-control" id="espiritual" th:field="*{espiritual}" rows="3" maxlength="250" placeholder="Caso tenha tido alguma dificuldade espiritual, usar este espaço para descrevê-la"></textarea>
 						</div>
 					</div>
 					<div class="form-group col-md-8">
 						<label for="oracao" class="col-md-4 control-label">Motivos de Oração</label>
 						<div>
-							<textarea class="form-control" id="oracao" name="oracao" rows="3" maxlength="250" placeholder="Descreva os motivos para solicitações de oração."></textarea>
+							<textarea class="form-control" id="oracao" th:field="*{oracao}" rows="3" maxlength="250" placeholder="Descreva os motivos para solicitações de oração."></textarea>
 						</div>
 					</div>
 					<div class="form-group col-md-8">

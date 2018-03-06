@@ -3,7 +3,11 @@ package com.jetro.model;
 import java.util.Date;
 
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity( name = "CelulaRel")
@@ -17,39 +21,50 @@ public class Relatorio {
 	@OneToOne(fetch = FetchType.EAGER, cascade={CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
 	@JoinColumn(name = "IdCelula", referencedColumnName = "IdCelula")
 	private Celula celula;
-	
+
+	@NotNull(message = "O campo de data precisa ser preenchido.")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "Data")
 	private Date data;
-	
+
+	@NotEmpty(message = "O campo de hora de início não pode ser vazio.")
+	@Size(max = 4, min = 2, message = "O campo de hora de início não pode ter menos que 2 caracteres.")
 	@Column(name = "HrInicio")
 	private String horaInicio;
-	
+
+	@NotEmpty(message = "O campo de hora de fim não pode ser vazio.")
+	@Size(max = 4, min = 2, message = "O campo de hora de fim não pode ter menos que 2 caracteres.")
 	@Column(name = "HrFim")
 	private String horaFim;
 
+	@NotNull(message = "Precisa-se selecionar algum preletor.")
 	@ManyToOne(fetch = FetchType.EAGER, cascade={CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
 	@JoinColumn(name = "IdPreletor", referencedColumnName = "IdMembro")
 	private Membro preletor;
-	
+
+	@NotNull(message = "O campo de número de presentes não pode ser vazio.")
+	@DecimalMin(value = "1", message = "O número de presentes não pode ser menor que 1.")
 	@Column(name = "NumPresentes")
 	private Integer numeroPresentes;
 
+	@NotNull(message = "O campo de número de visitantes não pode ser vazio.")
+	@DecimalMin(value = "1", message = "O número de visitantes não pode ser menor que 1.")
 	@Column(name = "NumVisitantes")
 	private Integer numeroVisitantes;
-	
+
 	@Column(name = "IndOracao")
 	private String indOracao;
-	
+
 	@Column(name = "IndDificuldade")
 	private String indDificuldade;
-	
+
+	@NotEmpty(message = "O campo de tipo de louvor não pode ser vazio.")
 	@Column(name = "IndLouvor")
 	private String indLouvor;
-	
+
 	@Column(name = "IndSituacao")
 	private String indSituacao;
-	
+
 	@Column(name = "Observacao")
 	private String observacao;
 
